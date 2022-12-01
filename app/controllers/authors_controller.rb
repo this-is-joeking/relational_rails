@@ -1,14 +1,10 @@
 class AuthorsController < ApplicationController
   def index
-    @Authors = Author.all
+    @Authors = Author.sort_by_created_at
   end
 
   def show
     @author = Author.find(params[:id])
-  end
-
-  def books
-    @author = Author.find(params[:id])
-    @books = Book.where(author_id: @author.id)
+    @number_of_books = @author.count_books
   end
 end
