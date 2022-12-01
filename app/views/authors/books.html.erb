@@ -1,0 +1,9 @@
+<h1><%= @author.name %></h1>
+<ul>
+<% @books. each do |book| %>
+  <li><h3><%= book.name %></h3></li>
+  <p>Genre: <%= book.genre%></p>
+  <p>Length: <%= book.page_length%> pages</p>
+  <p>Available as audiobook: <%= book.available_as_audiobook%></p>
+<% end %>
+</ul>
