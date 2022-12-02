@@ -1,0 +1,5 @@
+<h1> Authors </h1>
+<% @Authors.each do |author| %>
+  <h3><%= link_to author.name, "/authors/#{author.id}" %></h3>
+  <p>Created at: <%= author.created_at %>
+<% end %>
