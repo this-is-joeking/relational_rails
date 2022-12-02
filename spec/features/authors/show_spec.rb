@@ -38,4 +38,12 @@ RSpec.describe 'the authors show page' do
 
     expect(page).to have_content("Number of books: 3")
   end
+
+  it 'has a link to the books index page' do
+    author1 = Author.create!(name: 'Charles Dickens', living: false, location: 'England', years_active: 35)
+
+    visit "/authors/#{author1.id}"
+
+    expect(page).to have_link('Books', href:"/books")
+  end
 end

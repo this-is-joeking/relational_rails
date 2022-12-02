@@ -32,6 +32,12 @@ RSpec.describe 'books index page' do
         expect(page).to have_content(book2.genre)
         expect(page).to have_content(book2.author.name)
       end
+
+      it 'has a link to the authors index page' do   
+        visit "/books"
+    
+        expect(page).to have_link('Authors', href:"/authors")
+      end
     end
   end
 end

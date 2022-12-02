@@ -34,4 +34,10 @@ RSpec.describe 'the authors page' do
     expect(author2.name).to appear_before(author1.name)
     expect(author2.name).to appear_before(author3.name)
   end
+
+  it 'has a link to the books index page' do
+    visit "/authors"
+
+    expect(page).to have_link('Books', href:"/books")
+  end
 end

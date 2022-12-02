@@ -32,4 +32,12 @@ RSpec.describe 'the show all books by that author page' do
     expect(page).to have_content(book3.genre)
     expect(page).to have_content(book3.genre)
   end
+
+  it 'has a link to the authors index page' do   
+    author1 = Author.create!(name: 'Stephen King', location: 'Maine', years_active: 42, living: true)
+
+    visit "/authors/#{author1.id}/books"
+
+    expect(page).to have_link('Authors', href:"/authors")
+  end
 end
