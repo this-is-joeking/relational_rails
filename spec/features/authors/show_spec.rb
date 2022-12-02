@@ -32,11 +32,11 @@ RSpec.describe 'the authors show page' do
 
     visit "/authors/#{author1.id}"
 
-    expect(page).to have_content("Number of books: 1")
+    expect(page).to have_content("See all 1")
 
     visit "/authors/#{author2.id}"
 
-    expect(page).to have_content("Number of books: 3")
+    expect(page).to have_content("See all 3")
   end
 
   it 'has a link to the books index page' do
@@ -45,5 +45,14 @@ RSpec.describe 'the authors show page' do
     visit "/authors/#{author1.id}"
 
     expect(page).to have_link('Books', href:"/books")
+  end
+
+  it 'has a link to the books authors books page' do
+    author1 = Author.create!(name: 'Charles Dickens', living: false, location: 'England', years_active: 35)
+    book1 = author1.books.create!(name: 'Tail of two cities', available_as_audiobook: true, page_length: 223, genre: 'Classics')
+
+    visit "/authors/#{author1.id}"
+
+    expect(page).to have_link("See all 1 of Charles Dickens's books", href:"/authors/#{author1.id}/books")
   end
 end

@@ -2,4 +2,4 @@
 <h3>Location: <%= @author.location %></h3>
 <h3>Years Active: <%= @author.years_active %></h3>
 <h3>Currently alive: <%= @author.living %></h3>
-<h3>Number of books: <%= @number_of_books %>
+<h3><%= link_to "See all #{ @number_of_books } of #{ @author.name }'s books", "/authors/#{ @author.id }/books"%></h3>
