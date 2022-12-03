@@ -1,0 +1,16 @@
+<h2> New book by <%= @author.name %></h2>
+<%= form_with url: "/authors/#{@author.id}/books", method: :post, local: true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <br><br>
+  <%= form.label :available_as_audiobook %>
+  <%= form.select :available_as_audiobook, ["true", "false"] %>
+  <br> <br>
+  <%= form.label :page_length %>
+  <%= form.text_field :page_length %>
+  <br> <br>
+  <%= form.label :genre %>
+  <%= form.text_field :genre %>
+  <%= form.submit 'Create Book' %>
+
+<% end %>
