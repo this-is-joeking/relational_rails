@@ -16,8 +16,19 @@ class AuthorsController < ApplicationController
     redirect_to '/authors'
   end
 
+  def edit
+    @author = Author.find(params[:id])
+  end
+
+  def update
+    author = Author.find(params[:id])
+    author.update(author_params)
+    redirect_to "/authors/#{params[:id]}"
+  end
+
 private
   def author_params
-    params.permit(:name, :living, :location, :years_active)
+    cleansed_params = params.permit(:name, :living, :location, :years_active).to_h
+    cleansed_params.select { |_key, value| !value.empty? }
   end
 end
