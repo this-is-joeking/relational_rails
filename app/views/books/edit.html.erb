@@ -1,0 +1,16 @@
+<h2>Update <%= @book.name %></h2>
+<%= form_with url: "/books/#{@book.id}", method: :patch, local:true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <br><br>
+  <%= form.label :available_as_audiobook %>
+  <%= form.select :available_as_audiobook, ["true", "false"] %>
+  <br> <br>
+  <%= form.label :page_length %>
+  <%= form.text_field :page_length %>
+  <br><br>
+  <%= form.label :genre %>
+  <%= form.text_field :genre %>
+  <br><br>
+  <%= form.submit 'Update Book' %>
+<% end %>

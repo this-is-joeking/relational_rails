@@ -29,6 +29,5 @@ RSpec.describe 'the books show page' do
     expect(page).to_not have_content(book2.available_as_audiobook)
     expect(page).to_not have_content(book2.page_length)
     expect(page).to_not have_content(book2.genre)
-
   end
 end
