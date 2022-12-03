@@ -1,0 +1,14 @@
+<%= form_with url: '/authors', method: :post, local: true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <br><br>
+  <%= form.label :living %>
+  <%= form.select :living, ["true", "false"] %>
+  <br> <br>
+  <%= form.label :location %>
+  <%= form.text_field :location %>
+  <br><br>
+  <%= form.label :years_active %>
+  <%= form.text_field :years_active %>
+  <%= form.submit 'Create Author' %>
+<% end %>
