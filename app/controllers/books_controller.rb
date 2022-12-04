@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @Books = Book.all
+    @Books = Book.only_audio_books
   end
 
   def show

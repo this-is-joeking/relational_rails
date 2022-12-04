@@ -38,6 +38,17 @@ RSpec.describe 'books index page' do
     
         expect(page).to have_link('Authors', href:"/authors")
       end
+
+      it 'only shows books the are available as audiobook' do
+        author1 = Author.create!(name: 'Stephen King', location: 'Maine', years_active: 42, living: true)
+        author2 = Author.create!(name: 'John Steinbeck', living: false, location: "California, USA", years_active: 40)
+        book1 = author1.books.create!(name: 'The Gunslinger', available_as_audiobook: true, page_length: 223, genre: 'Fantasy/Western')
+        book2 = author2.books.create!(name: 'Grapes of Wrath', available_as_audiobook: false, page_length: 425, genre: 'Historical Fiction')
+        visit "/books"
+        
+        expect(page).to have_content(book1.name)
+        expect(page).to_not have_content(book2.name)        
+      end
     end
   end
 end
