@@ -1,5 +1,5 @@
 class Author < ApplicationRecord
-  has_many :books
+  has_many :books, :dependent => :destroy
 
   def self.sort_by_created_at
     self.order(created_at: :desc)

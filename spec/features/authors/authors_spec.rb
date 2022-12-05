@@ -56,4 +56,20 @@ RSpec.describe 'the authors page' do
 
     expect(current_path).to eq("/authors/#{author1.id}/edit")
   end
+
+  it 'has a link to delete each author' do
+    author1 = Author.create!(name: 'Charles Dickens', living: false, location: 'England', years_active: 35)
+    author2 = Author.create!(name: 'John Steinbeck', living: false, location: "California, USA", years_active: 40)
+    author3 = Author.create!(name: 'James Patterson', living: false, location: "California, USA", years_active: 40, created_at: Time.now - 4.days)
+    visit "/authors"
+
+    expect(page).to have_link("Delete Charles Dickens")
+    expect(page).to have_link("Delete John Steinbeck")
+    expect(page).to have_link("Delete James Patterson")
+
+    click_link "Delete Charles Dickens"
+
+    expect(current_path).to eq("/authors")
+    expect(page).to_not have_content("Charles Dickens")
+  end
 end

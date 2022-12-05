@@ -26,6 +26,11 @@ class AuthorsController < ApplicationController
     redirect_to "/authors/#{params[:id]}"
   end
 
+  def destroy
+    Author.find(params[:id]).destroy
+    redirect_to "/authors"
+  end
+
 private
   def author_params
     cleansed_params = params.permit(:name, :living, :location, :years_active).to_h

@@ -17,6 +17,11 @@ class BooksController < ApplicationController
     redirect_to "/books/#{ book.id }"
   end
 
+  def destroy
+    Book.find(params[:id]).destroy
+    redirect_to '/books'
+  end
+
 private
 def book_params
   cleansed_params = params.permit(:name, :available_as_audiobook, :page_length, :genre).to_h
