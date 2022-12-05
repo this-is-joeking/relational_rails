@@ -48,11 +48,11 @@ RSpec.describe 'the authors page' do
 
     visit "/authors"
 
-    expect(page).to have_link("Edit Charles Dickens")
-    expect(page).to have_link("Edit John Steinbeck")
-    expect(page).to have_link("Edit James Patterson")
+    expect(page).to have_link("Update Charles Dickens")
+    expect(page).to have_link("Update John Steinbeck")
+    expect(page).to have_link("Update James Patterson")
 
-    click_link "Edit Charles Dickens"
+    click_link "Update Charles Dickens"
 
     expect(current_path).to eq("/authors/#{author1.id}/edit")
   end
