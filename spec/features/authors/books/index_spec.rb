@@ -40,4 +40,24 @@ RSpec.describe 'the show all books by that author page' do
 
     expect(page).to have_link('Authors', href:"/authors")
   end
+
+  it 'has a link to sort books alphabetically' do
+    author1 = Author.create!(name: 'Stephen King', location: 'Maine', years_active: 42, living: true)
+    book1 = author1.books.create!(name: 'The Gunslinger', available_as_audiobook: true, page_length: 223, genre: 'Fantasy/Western')
+    book2 = author1.books.create!(name: 'Carrie', available_as_audiobook: false, page_length: 526, genre: 'Horror')
+    book3 = author1.books.create!(name: 'Wizard and Glass', available_as_audiobook: true, page_length: 657, genre: 'Fantasy/Western')
+    book4 = author1.books.create!(name: 'THE STAND', available_as_audiobook: true, page_length: 223, genre: 'Fantasy/Western')
+
+    visit "/authors/#{author1.id}/books"
+
+    expect(book1.name).to appear_before(book2.name)
+    expect(book2.name).to appear_before(book3.name)
+    expect(book3.name).to appear_before(book4.name)
+
+    click_link 'Sort Alphabetically'
+
+    expect(book2.name).to appear_before(book1.name)
+    expect(book1.name).to appear_before(book3.name)
+    expect(book1.name).to appear_before(book4.name)
+  end
 end
