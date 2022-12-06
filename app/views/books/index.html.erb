@@ -1,5 +1,6 @@
 <h1>Books</h1>
 <% @Books. each do |book| %>
+  <div class='table_item'>
   <h3><%= link_to book.name, "/books/#{ book.id }" %></h3>
   <p>By:  <%= link_to book.author.name, "/authors/#{ book.author.id }" %></p>
   <p>Genre: <%= book.genre%></p>
@@ -7,5 +8,6 @@
   <p>Available as audiobook: <%= book.available_as_audiobook%></p>
   <p><%= link_to "Update '#{ book.name }'", "/books/#{ book.id }/edit" %>
   <%= link_to "Delete '#{ book.name }'", "/books/#{ book.id }", method: :delete %></p>
+  </div>
 <% end %>
 
