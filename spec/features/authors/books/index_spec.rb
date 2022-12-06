@@ -73,4 +73,20 @@ RSpec.describe 'the show all books by that author page' do
 
     expect(page).to have_button("Submit")
   end
+  
+  it 'has a link to delete each book' do
+    author = Author.create!(name: 'John Steinbeck', living: false, location: "California, USA", years_active: 40)
+    book1 = author.books.create!(name: 'The Pearl', available_as_audiobook: true, page_length: 105, genre: 'Classics')
+    book2 = author.books.create!(name: 'Grapes of Wrath', available_as_audiobook: true, page_length: 425, genre: 'Historical Fiction')
+
+    visit "/authors/#{author.id}/books"
+
+    expect(page).to have_link("Delete '#{ book1.name }'")
+    expect(page).to have_link("Delete '#{ book2.name }'")
+
+    click_link "Delete 'The Pearl'"
+
+    expect(current_path).to eq("/books")
+    expect(page).to_not have_content("#{ book1.name }")
+  end
 end
