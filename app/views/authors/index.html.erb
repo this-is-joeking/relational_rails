@@ -1,11 +1,13 @@
 <h1> Authors </h1>
-<%= link_to 'Sort by number of books', "/authors?sort=number_of_books" %>
+<%# <%= link_to 'Sort by number of books', "/authors?sort=number_of_books" %>
 <% @Authors.each do |author| %>
+  <div class='table_item'>
   <h3><%= link_to author.name, "/authors/#{author.id}" %></h3>
   <p>Created at: <%= author.created_at %></p>
   <p><%= "#{ author.count_books } book(s) by #{ author.name }" %>
   <h5><%= link_to "Update #{ author.name }", "/authors/#{ author.id }/edit", method: :get %> :: 
   <%= link_to "Delete #{ author.name }", "/authors/#{ author.id }", method: :delete %>
+  </div>
 <% end %>
 <br>
 <h4><%= link_to 'New Author', '/authors/new' %></h4>
