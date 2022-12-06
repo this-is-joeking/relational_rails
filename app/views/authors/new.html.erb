@@ -1,6 +1,6 @@
 <%= form_with url: '/authors', method: :post, local: true do |form| %>
   <%= form.label :name %>
-  <%= form.text_field :name %>
+  <%= form.text_field :name, :required => true %>
   <br><br>
   <%= form.label :living %>
   <%= form.select :living, ["true", "false"] %>

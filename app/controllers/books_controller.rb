@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @Books = Book.all
+    @Books = Book.only_audio_books
   end
 
   def show
@@ -15,6 +15,11 @@ class BooksController < ApplicationController
     book = Book.find(params[:id]) 
     book.update(book_params)
     redirect_to "/books/#{ book.id }"
+  end
+
+  def destroy
+    Book.find(params[:id]).destroy
+    redirect_to '/books'
   end
 
 private

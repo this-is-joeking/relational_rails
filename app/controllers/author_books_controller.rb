@@ -2,6 +2,10 @@ class AuthorBooksController < ApplicationController
   def index
     @author = Author.find(params[:id])
     @books = Book.where(author_id: @author.id)
+    # @books = @author.books
+    if params[:sort]
+      @books = Book.sort_alphabetically
+    end
   end
 
   def new

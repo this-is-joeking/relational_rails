@@ -7,10 +7,16 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <style>
+    .nav_bar {
+      background-color: lightgray;
+      text-align: justify;
+    }
+    </style>
   </head>
 
   <body>
-  <h5><a href="/books">Books</a> :: <a href="/authors">Authors</a><h5>
+  <h3 class="nav_bar"><a href="/books">Books</a> :: <a href="/authors">Authors</a><h3>
 
     <%= yield %>
     
