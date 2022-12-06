@@ -10,8 +10,6 @@ class Book < ApplicationRecord
   end
 
   def self.page_limit(num_of_pages)
-    num_of_pages = 0 if num_of_pages.empty?
-
     where("page_length >= #{num_of_pages}")
   end
 end
