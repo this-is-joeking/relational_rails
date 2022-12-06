@@ -65,6 +65,23 @@ RSpec.describe 'books index page' do
 
         expect(current_path).to eq("/books/#{ book1.id }/edit")
       end
+
+      it 'has a link to delete each book' do
+        author1 = Author.create!(name: 'Stephen King', location: 'Maine', years_active: 42, living: true)
+        author2 = Author.create!(name: 'John Steinbeck', living: false, location: "California, USA", years_active: 40)
+        book1 = author1.books.create!(name: 'The Gunslinger', available_as_audiobook: true, page_length: 223, genre: 'Fantasy/Western')
+        book2 = author2.books.create!(name: 'Grapes of Wrath', available_as_audiobook: true, page_length: 425, genre: 'Historical Fiction')
+
+        visit '/books'
+
+        expect(page).to have_link("Delete '#{ book1.name }'")
+        expect(page).to have_link("Delete '#{ book2.name }'")
+
+        click_link "Delete 'The Gunslinger'"
+
+        expect(current_path).to eq("/books")
+        expect(page).to_not have_content("#{ book1.name }")
+      end
     end
   end
 end
