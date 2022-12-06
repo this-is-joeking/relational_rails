@@ -4,7 +4,11 @@ class AuthorBooksController < ApplicationController
     @books = Book.where(author_id: @author.id)
     # @books = @author.books
     if params[:sort]
-      @books = Book.sort_alphabetically
+      @books = @books.sort_alphabetically
+    end
+
+    if params[:page_length]
+      @books = @books.page_limit(params[:page_length])
     end
   end
 

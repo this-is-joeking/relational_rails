@@ -1,6 +1,6 @@
 <h1>Books by <%= @author.name %></h1>
 <ul>
-<% @books. each do |book| %>
+<% @books.each do |book| %>
   <li><h3><%= link_to book.name, "/books/#{ book.id }" %></h3></li>
   <p>Genre: <%= book.genre%></p>
   <p>Length: <%= book.page_length%> pages</p>
@@ -9,3 +9,9 @@
 </ul>
 <%= link_to "Sort Alphabetically", "/authors/#{ @author.id }/books?sort=alpha" %>
 <%= link_to "Create Book", "/authors/#{ @author.id }/books/new" %>
+<%= form_with url: "/authors/#{@author.id}/books", method: :get, local: true do |form| %>
+  <%= form.label :page_length, "Minimum number of pages" %>
+  <%= form.number_field :page_length, :value => 0 %>
+  <%= form.submit "Submit" %>
+<% end %>
+  

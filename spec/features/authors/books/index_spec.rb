@@ -60,4 +60,17 @@ RSpec.describe 'the show all books by that author page' do
     expect(book1.name).to appear_before(book3.name)
     expect(book1.name).to appear_before(book4.name)
   end
+
+  it 'has a form that allows user to look for books with page count over the user specified  value' do
+    author1 = Author.create!(name: 'Stephen King', location: 'Maine', years_active: 42, living: true)
+    book1 = author1.books.create!(name: 'The Gunslinger', available_as_audiobook: true, page_length: 223, genre: 'Fantasy/Western')
+    book2 = author1.books.create!(name: 'Carrie', available_as_audiobook: false, page_length: 526, genre: 'Horror')
+    book3 = author1.books.create!(name: 'Wizard and Glass', available_as_audiobook: true, page_length: 657, genre: 'Fantasy/Western')
+    book4 = author1.books.create!(name: 'THE STAND', available_as_audiobook: true, page_length: 809, genre: 'Fiction')
+
+    visit "/authors/#{author1.id}/books"
+    fill_in 'page_length', with: '550'
+
+    expect(page).to have_button("Submit")
+  end
 end
