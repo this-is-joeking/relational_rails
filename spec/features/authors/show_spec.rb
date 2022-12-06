@@ -47,7 +47,7 @@ RSpec.describe 'the authors show page' do
     expect(page).to have_link('Books', href:"/books")
   end
 
-  it 'has a link to the books authors books page' do
+  it 'has a link to the authors books page for that author' do
     author1 = Author.create!(name: 'Charles Dickens', living: false, location: 'England', years_active: 35)
     book1 = author1.books.create!(name: 'Tail of two cities', available_as_audiobook: true, page_length: 223, genre: 'Classics')
 
