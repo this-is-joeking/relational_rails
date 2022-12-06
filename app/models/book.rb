@@ -6,6 +6,6 @@ class Book < ApplicationRecord
   end
 
   def self.sort_alphabetically
-    self.order("lower(name)")
+    self.order(Arel.sql"lower(name)")
   end
 end
