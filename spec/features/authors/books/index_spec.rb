@@ -70,8 +70,13 @@ RSpec.describe 'the show all books by that author page' do
 
     visit "/authors/#{author1.id}/books"
     fill_in 'page_length', with: '550'
+    click_button 'Submit'
 
-    expect(page).to have_button("Submit")
+    expect(current_path).to eq("/authors/#{author1.id}/books")
+    expect(page).to have_content(book3.name)
+    expect(page).to have_content(book4.name)
+    expect(page).to_not have_content(book1.name)
+    expect(page).to_not have_content(book2.name)
   end
   
   it 'has a link to delete each book' do
